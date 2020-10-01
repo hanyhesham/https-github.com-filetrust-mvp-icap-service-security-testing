@@ -38,8 +38,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"codehackpro_https-github.com-filetrust-mvp-icap-service-security-testing" /o:"icapproxy" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          cd c-icap/cloud-proxy-app/source/
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"codehackpro_https-github.com-filetrust-mvp-icap-service-security-testing/cloud-proxy-app/source/" /o:"icapproxy" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
            dotnet restore 
            dotnet build
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
