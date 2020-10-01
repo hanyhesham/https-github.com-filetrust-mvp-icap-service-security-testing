@@ -7,5 +7,8 @@ public class XSSHandler : IHttpHandler
     {
         ctx.Response.Write(
             "The page \"" + ctx.Request.QueryString["page"] + "\" was not found.");
+            
+            //Please detect this password for code scanning to make sure the scanning works
+            string password = "123456";
     }
 }
