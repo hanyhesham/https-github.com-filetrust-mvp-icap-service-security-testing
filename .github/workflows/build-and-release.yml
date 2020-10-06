@@ -32,16 +32,7 @@ jobs:
       with:
         submodules: true
 
-    - name: 'Login via Azure CLI'
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - uses: azure/docker-login@v1
-      with:
-        login-server: ${{ env.REPOSITORY }} # default: index.docker.io
-        username: ${{ secrets.REGISTRY_USER }} 
-        password: ${{ secrets.REGISTRY_PASS }} 
       
     - name: Build the new image and delete the old image 
       run: |
