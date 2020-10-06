@@ -62,10 +62,28 @@ jobs:
     # ✏️ If the Autobuild fails above, remove it and uncomment the following three lines
     #    and modify them (or add more) to build your code if your project
     #    uses a compiled language
+      
+    - run: |
+       sudo apt-get update
+        sudo apt-get upgrade -y
+        sudo apt-get install git
+        sudo apt-get install gcc
+        sudo apt-get install -y doxygen
+        sudo apt-get install make
+        sudo apt-get install automake
+        sudo apt-get install automake1.11
+        sudo apt-get install libtool
+        autoreconf -i
+        ./configure --prefix=/usr/local/c-icap
+        make 
+        sudo make install
+        autoreconf -i
+        ./configure --with-c-icap=/usr/local/c-icap --prefix=/usr/local/c-icap
+        make 
+        sudo make install
+        sudo sh -c 'echo "Include gw_rebuild.conf" >>  /usr/local/c-icap/etc/c-icap.conf'
 
-    #- run: |
-    #   make bootstrap
-    #   make release
 
+        
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
