@@ -3,10 +3,9 @@
 name: CI
 env:
   REPOSITORY: gw-icap
-  REGISTRY: hhehsam.azurecr.io
+  REGISTRY: hhesham.azurecr.io
   IMAGE: mvp-icap-service
   RESOURCE_GROUP: gw-test
-  CONTAINER_NAME: gw-icapserver-cloudproxy
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
@@ -52,5 +51,5 @@ jobs:
         tenant: ${{ secrets.tenant }}
         registry: ${{ env.REGISTRY }}
         repository: ${{ env.REPOSITORY }}
-        image: env.IMAGE
+        image: ${{ env.IMAGE }}
         dockerfile: Dockerfile
