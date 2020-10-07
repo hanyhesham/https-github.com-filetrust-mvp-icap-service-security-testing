@@ -1,12 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
 name: CI
-env:
-#  REPOSITORY: glasswallicap.azurecr.io
-#  IMAGE: mvp-icap-service
-#  RESOURCE_GROUP: gw-gks-icap-squid-proxy
-#  FQDN: icapservercloudproxy
-#  CONTAINER_NAME: gw-icapserver-cloudproxy
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
