@@ -53,4 +53,4 @@ jobs:
         registry: ${{ env.REGISTRY }}
         repository: ${{ env.REPOSITORY }}
         image: env.IMAGE
-        dockerfile:i Dockerfile
+        dockerfile: Dockerfile
