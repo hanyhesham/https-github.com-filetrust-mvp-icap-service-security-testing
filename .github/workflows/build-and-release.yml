@@ -54,7 +54,7 @@ jobs:
       with:
         resource-group: ${{ env.RESOURCE_GROUP }}
         dns-name-label: ${{ env.FQDN }}
-        image: ${{ en    v.REPOSITORY }}/${{ env.IMAGE}}:${{ github.sha }}
+        image: ${{ env.REPOSITORY }}/${{ env.IMAGE}}:${{ github.sha }}
         registry-username: ${{ secrets.REGISTRY_USER }}
         registry-password: ${{ secrets.REGISTRY_PASS }}
         name: ${{ env.CONTAINER_NAME }}
