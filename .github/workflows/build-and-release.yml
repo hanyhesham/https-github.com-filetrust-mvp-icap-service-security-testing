@@ -3,7 +3,7 @@
 name: CI
 env:
   REPOSITORY: gw-icap
-  REGISTRY: hhesham.azurecr.io
+  REGISTRY: hhesham
   IMAGE: mvp-icap-service
   RESOURCE_GROUP: gw-test
 # Controls when the action will run. Triggers the workflow on push or pull request
