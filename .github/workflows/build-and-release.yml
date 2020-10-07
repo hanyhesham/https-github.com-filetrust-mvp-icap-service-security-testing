@@ -2,7 +2,8 @@
 
 name: CI
 env:
-  REPOSITORY: hhehsam.azurecr.io
+  REPOSITORY: gw-icap
+  REGISTRY: hhehsam.azurecr.io
   IMAGE: mvp-icap-service
   RESOURCE_GROUP: gw-test
   CONTAINER_NAME: gw-icapserver-cloudproxy
@@ -41,6 +42,18 @@ jobs:
         login-server: ${{ env.REPOSITORY }} # default: index.docker.io
         username: ${{ secrets.REGISTRY_USER }} 
         password: ${{ secrets.REGISTRY_PASS }} 
+
+      - name: ACR build
+        id: acr
+        uses: ams0/acr-task-github-action@v1
+        with:
+          service_principal: ${{ secrets.service_principal }}
+          service_principal_password: ${{ secrets.service_principal_password }}
+          tenant: ${{ secrets.tenant }}
+          registry: ${{ env.REGISTRY }}
+          repository: ${{ env.REPOSITORY }}
+          image: env.IMAGE
+          dockerfile:i Dockerfile
 
     - name: Build the new image and delete the old image 
       run: |
