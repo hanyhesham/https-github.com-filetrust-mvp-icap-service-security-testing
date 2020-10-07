@@ -1,6 +1,11 @@
-## This is a basic workflow to help you get started with Actions
+# This is a basic workflow to help you get started with Actions
 
 name: CI
+env:
+  REPOSITORY: hhehsam.azurecr.io
+  IMAGE: mvp-icap-service
+  RESOURCE_GROUP: gw-test
+  CONTAINER_NAME: gw-icapserver-cloudproxy
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
@@ -30,3 +35,15 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - uses: azure/docker-login@v1
+      with:
+        login-server: ${{ env.REPOSITORY }} # default: index.docker.io
+        username: ${{ secrets.REGISTRY_USER }} 
+        password: ${{ secrets.REGISTRY_PASS }} 
+
+    - name: Build the new image and delete the old image 
+      run: |
+        docker build . -t ${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ github.sha }}
+        docker push ${{ env.REPOSITORY }}/${{ env.IMAGE}}:${{ github.sha }}
+        az container delete --name ${{ env.CONTAINER_NAME }} --resource-group ${{ env.RESOURCE_GROUP }} --yes || true  
