@@ -2,7 +2,7 @@
 
 name: CI
 env:
-  REPOSITORY: hhesham
+  REPOSITORY: hhesham.azurecr.io
   IMAGE: mvp-icap-service
   RESOURCE_GROUP: gw-test 
   CONTAINER_NAME: gw-icapserver-cloudproxy
