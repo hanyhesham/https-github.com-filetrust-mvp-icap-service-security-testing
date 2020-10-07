@@ -31,16 +31,8 @@ jobs:
     - uses: actions/checkout@v2
       with:
         submodules: true
-
-
       
-    - name: Build the new image and delete the old image 
-      run: |
-        docker build . -t ${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ github.sha }}
-        docker push ${{ env.REPOSITORY }}/${{ env.IMAGE}}:${{ github.sha }}
-        az container delete --name ${{ env.CONTAINER_NAME }} --resource-group ${{ env.RESOURCE_GROUP }} --yes || true  
-   
-    # Deploy the ICAP container to Azure container instances using the recent build image in Azure container registry 
-    - name: Deploy the new image to Azure container instances
-      run: | 
-        az container create --resource-group ${{ env.RESOURCE_GROUP }} --name ${{ env.CONTAINER_NAME }} -l "UK South" --image ${{ env.REPOSITORY }}/${{ env.IMAGE}}:${{ github.sha }} --registry-login-server ${{ env.REPOSITORY }} --registry-username ${{ secrets.REGISTRY_USER }} --registry-password ${{ secrets.REGISTRY_PASS }} --dns-name-label ${{ env.FQDN }} --ports 1344 --secure-environment-variables FileProcessingStorageConnectionString=${{ secrets.STORAGE_CONNECTION_STRING }} FileProcessingStorageOriginalStoreName=${{ secrets.STORAGE_STORE_NAME }} TransactionOutcomeQueueConnectionString=${{ secrets.QUEUE_CONNECTION_STRING }} TransactionOutcomeQueueName=${{ secrets.QUEUE_NAME }}
+    - name: 'Login via Azure CLI'
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
