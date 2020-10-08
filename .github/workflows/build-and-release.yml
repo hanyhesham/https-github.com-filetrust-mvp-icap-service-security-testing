@@ -48,7 +48,9 @@ jobs:
         docker build . -t ${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ github.sha }}
         docker push ${{ env.REPOSITORY }}/${{ env.IMAGE}}:${{ github.sha }}
         az container delete --name ${{ env.CONTAINER_NAME }} --resource-group ${{ env.RESOURCE_GROUP }} --yes || true 
-
+      with:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        
     - name: 'Deploy to Azure Container Instances'
       uses: 'azure/aci-deploy@v1'
       with:
