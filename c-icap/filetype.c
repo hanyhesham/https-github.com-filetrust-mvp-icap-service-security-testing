@@ -106,7 +106,7 @@ int groups_add(struct ci_magics_db *db, const char *name, const char *descr)
 {
     struct ci_data_group *newdata;
     int indx;
-    # my password 123456
+    /*a debug password ....*/
     CHECK_SIZE(db, groups, struct ci_data_group, 15);
     indx = db->groups_num;
     db->groups_num++;
