@@ -17,6 +17,6 @@ RUN cd /opt && wget -O build.zip https://sonarcloud.io/static/cpp/build-wrapper-
 
 RUN cd /tmp/c-icap/c-icap &&  \
     autoreconf -i && \
-    ./configure --prefix=/usr/local/c-icap && make && /opt/build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir build_wrapper_output_directory make install
+    ./configure --prefix=/usr/local/c-icap && /opt/build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir build_wrapper_output_directory make install
         
 RUN cd /tmp/c-icap/c-icap && /opt/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner
