@@ -10,6 +10,7 @@ COPY ./c-icap-modules /tmp/c-icap/c-icap-modules
 
 FROM source as build    
 
+ARG SONAR_TOKEN
 #Install sonar scanner and build wrapper
 RUN cd /opt && wget -O sonar.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.4.0.2170-linux.zip && unzip sonar.zip  
 RUN cd /opt && wget -O build.zip https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip && unzip build.zip
