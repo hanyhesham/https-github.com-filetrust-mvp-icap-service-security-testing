@@ -48,14 +48,3 @@ jobs:
         docker build . --build-arg SONAR_TOKEN=${{ secrets.SONAR_TOKEN }} -t ${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ github.sha }}
         docker push ${{ env.REPOSITORY }}/${{ env.IMAGE}}:${{ github.sha }}
         az container delete --name ${{ env.CONTAINER_NAME }} --resource-group ${{ env.RESOURCE_GROUP }} --yes || true 
-        
-    - name: 'Deploy to Azure Container Instances'
-      uses: 'azure/aci-deploy@v1'
-      with:
-        resource-group: ${{ env.RESOURCE_GROUP }}
-        dns-name-label: ${{ env.FQDN }}
-        image: ${{ env.REPOSITORY }}/${{ env.IMAGE}}:${{ github.sha }}
-        registry-username: ${{ secrets.REGISTRY_USER }}
-        registry-password: ${{ secrets.REGISTRY_PASS }}
-        name: ${{ env.CONTAINER_NAME }}
-        location: 'west us'
