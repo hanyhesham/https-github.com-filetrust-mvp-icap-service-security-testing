@@ -2,11 +2,8 @@
 
 name: CI
 env:
-  REPOSITORY: hhesham.azurecr.io
-  FQDN: icapservercloudproxy
+  REPOSITORY: glasswallicap.azurecr.io
   IMAGE: mvp-icap-service
-  RESOURCE_GROUP: gw-test 
-  CONTAINER_NAME: gw-icapserver-cloudproxy
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
@@ -46,5 +43,3 @@ jobs:
     - name: Build the new image and delete the old image 
       run: |
         docker build . --build-arg SONAR_TOKEN=${{ secrets.SONAR_TOKEN }} -t ${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ github.sha }}
-        docker push ${{ env.REPOSITORY }}/${{ env.IMAGE}}:${{ github.sha }}
-        az container delete --name ${{ env.CONTAINER_NAME }} --resource-group ${{ env.RESOURCE_GROUP }} --yes || true 
