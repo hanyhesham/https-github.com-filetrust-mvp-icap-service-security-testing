@@ -145,7 +145,7 @@ int ci_local_cache_init(struct ci_cache *cache, const char *name)
         return 0;
     cache->cache_data = cache_data;
 
-    /*until we are going to create an allocator which can allocate/release from
+    /*until we are going to create an allocator which can  allocate/release from
      continues memory blocks like those we have in shared memory*/
     allocator = ci_create_os_allocator();
     if (!allocator) {
