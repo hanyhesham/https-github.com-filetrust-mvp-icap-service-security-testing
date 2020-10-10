@@ -1,45 +1,13 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
-env:
-  REPOSITORY: glasswallicap.azurecr.io
-  IMAGE: mvp-icap-service
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
-on:
-  push:
-    branches: [ master ]
-    paths-ignore: 
-      - 'Documentation/**'
-  pull_request:
-    branches: [ master ]
-    paths-ignore: 
-      - 'Documentation/**'    
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:   
-  build-and-release:
-    # The type of runner that the job will run on
+on: [push]
+jobs:
+  build:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    container: hheshamrepo/base-icap-service:latest
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
-      with:
-        submodules: true
-      
-    - name: 'Login via Azure CLI'
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        - name: Checkout Project
+          uses: actions/checkout@v1
 
-    - uses: azure/docker-login@v1
-      with:
-        login-server: ${{ env.REPOSITORY }} # default: index.docker.io
-        username: ${{ secrets.REGISTRY_USER }} 
-        password: ${{ secrets.REGISTRY_PASS }} 
+        - name: build c-icap
+          run: cd c-icap &&  autoreconf -i && ./configure --prefix=/usr/local/c-icap && /opt/build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir build_wrapper_output_directory make install
 
-    - name: Build the new image and delete the old image 
-      run: |
-        docker build . --build-arg SONAR_TOKEN=${{ secrets.SONAR_TOKEN }} -t ${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ github.sha }}
