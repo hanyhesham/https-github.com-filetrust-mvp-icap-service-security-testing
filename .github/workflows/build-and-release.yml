@@ -1,5 +1,13 @@
 name: CI
-on: [push]
+on:
+  push:
+    branches: [ master ]
+    paths-ignore:
+      - 'Documentation/**'
+  pull_request:
+    branches: [ master ]
+    paths-ignore:
+      - 'Documentation/**'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -7,7 +15,11 @@ jobs:
     steps:
         - name: Checkout Project
           uses: actions/checkout@v1
+          with:
+            submodules: tru
 
         - name: build c-icap
           run: cd c-icap &&  autoreconf -i && ./configure --prefix=/usr/local/c-icap && /opt/build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir build_wrapper_output_directory make install
 
+        - name: scan c-icap
+          run: cd c-icap && /opt/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner
