@@ -23,3 +23,6 @@ jobs:
 
         - name: scan c-icap
           run: cd c-icap && /opt/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
