@@ -1,0 +1,21 @@
+name: sonar-c#
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: hheshamrepo/base-icap-csharp-service:latest
+    steps:
+        - name: Checkout Project
+          uses: actions/checkout@v1
+          with:
+            submodules: true
+
+        - name: scan c# code
+          run: |
+            /root/.dotnet/tools/dotnet-sonarscanner build   /o:hanyhesham  /d:sonar.login="${{ secrets.SONAR_TOKEN }}"  /k:hanyhesham_https-github.com-filetrust-mvp-icap-service-security-testing   /d:sonar.host.url=https://sonarcloud.io /d:sonar.cfamily.build-wrapper-output="build_wrapper_output_directory"
+            dotnet build cloud-proxy-app/cloud-proxy-app.sln
+           /root/.dotnet/tools/dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}" 
