@@ -41,6 +41,7 @@ namespace Glasswall.IcapServer.CloudProxyApp
             {
                 return (int)ReturnOutcome.GW_ERROR;
             }
+            
             try
             {
                 var processingCancellationToken = _processingCancellationTokenSource.Token;
