@@ -2,15 +2,11 @@ name: sonar-c
 on:
   push:
     branches: [ master ]
-    paths-ignore:
-      - 'Documentation/**'
     paths:
       - 'c-icap/**'
       - 'c-icap-modules/**'
   pull_request:
     branches: [ master ]
-    paths-ignore:
-      - 'Documentation/**'
     paths:
       - 'c-icap/**'
       - 'c-icap-modules/**'
