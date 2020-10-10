@@ -4,10 +4,16 @@ on:
     branches: [ master ]
     paths-ignore:
       - 'Documentation/**'
+    paths:
+      - 'c-icap/**'
+      - 'c-icap-modules/**'
   pull_request:
     branches: [ master ]
     paths-ignore:
       - 'Documentation/**'
+    paths:
+      - 'c-icap/**'
+      - 'c-icap-modules/**'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -32,3 +38,6 @@ jobs:
 
         - name: scan c-icap-modules
           run: cd c-icap-modules && /opt/sonar-scanner-4.4.0.2170-linux/bin/sonar-scanner
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
