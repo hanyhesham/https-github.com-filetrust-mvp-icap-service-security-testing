@@ -32,7 +32,7 @@ int ci_resp_check_body(ci_request_t *req){
       if(e[i]->type == ICAP_NULL_BODY)
            return 0;
      return 1;
-}
+},
 */
 
 
