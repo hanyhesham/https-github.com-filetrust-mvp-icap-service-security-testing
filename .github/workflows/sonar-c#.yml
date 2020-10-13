@@ -2,15 +2,7 @@ name: sonar-c#
 env:
   SONAR_ORG: hanyhesham
   SONAR_PROJECT: hanyhesham_https-github.com-filetrust-mvp-icap-service-security-testing
-on:
-  push:
-    branches: [ master ]
-    paths:
-      - 'cloud-proxy-app/**'
-  pull_request:
-    branches: [ master ]
-    paths:
-      - 'cloud-proxy-app/**'
+on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
