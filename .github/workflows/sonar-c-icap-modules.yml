@@ -1,5 +1,5 @@
  
-name: sonar-c-icap
+name: sonar-c-icap-modules
 on:
   push:
     branches: '*'
