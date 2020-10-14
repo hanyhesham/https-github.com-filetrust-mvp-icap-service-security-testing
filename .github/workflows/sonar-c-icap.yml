@@ -1,7 +1,14 @@
  
-name: sonar-c
-on: [push, pull_request]
-jobs:
+name: sonar-c-icap
+on:
+  push:
+    branches: '*'
+    paths:
+      - 'c-icap/**'
+  pull_request:
+    branches: [ master ]
+    paths:
+      - 'c-icap/**'
   build:
     runs-on: ubuntu-latest
     container: hheshamrepo/base-icap-service:latest
