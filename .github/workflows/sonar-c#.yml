@@ -2,7 +2,15 @@ name: sonar-c#
 env:
   SONAR_ORG: hanyhesham
   SONAR_PROJECT: icap-c-sharp
-on: [push, pull_request]
+on:
+  push:
+    branches: '*'
+    paths:
+      - 'cloud-proxy-app/**'
+  pull_request:
+    branches: [ master ]
+    paths:
+      - 'cloud-proxy-app/**'
 jobs:
   build:
     runs-on: ubuntu-latest
