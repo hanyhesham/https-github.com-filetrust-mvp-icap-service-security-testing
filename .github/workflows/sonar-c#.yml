@@ -1,7 +1,7 @@
 name: sonar-c#
 env:
   SONAR_ORG: hanyhesham
-  SONAR_PROJECT: hanyhesham_https-github.com-filetrust-mvp-icap-service-security-testing
+  SONAR_PROJECT: icap-c-sharp
 on: [push, pull_request]
 jobs:
   build:
