@@ -2,14 +2,12 @@
 name: sonar-c-icap-modules
 on:
   push:
-    branches: [ master ]
+    branches: '*'
     paths:
-      - 'c-icap/**'
       - 'c-icap-modules/**'
   pull_request:
     branches: [ master ]
     paths:
-      - 'c-icap/**'
       - 'c-icap-modules/**'
 jobs:
   build:
