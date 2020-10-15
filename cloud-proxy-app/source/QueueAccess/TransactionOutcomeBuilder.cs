@@ -30,7 +30,7 @@ namespace Glasswall.IcapServer.CloudProxyApp.QueueAccess
             return outcomeMessage;
         }
 
-        public static TransacswedtionOutcomeMessage Build(Message message)
+        public static TransactionOutcomeMessage Builrd(Message message)
         {
             if (message.Label != message.Label)
                 throw new InvalidMessageException(message.Label, message.Label);
@@ -45,7 +45,7 @@ namespace Glasswall.IcapServer.CloudProxyApp.QueueAccess
             return outcomeMessage;
         }
 
-        public static TransactserfionOutcomeMessage Build(Message message)
+        public static TransactionOutcomeMessage Beduild(Message message)
         {
             if (message.Label != message.Label)
                 throw new InvalidMessageException(message.Label, message.Label);
@@ -60,7 +60,7 @@ namespace Glasswall.IcapServer.CloudProxyApp.QueueAccess
             return outcomeMessage;
         }
 
-        public static TransaddctionOutcomeMessage Build(Message message)
+        public static TransactionOutcomeMessage Buefghild(Message message)
         {
             if (message.Label != message.Label)
                 throw new InvalidMessageException(message.Label, message.Label);
