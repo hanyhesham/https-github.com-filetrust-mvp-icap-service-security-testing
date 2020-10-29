@@ -14,7 +14,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: hheshamrepo/base-icap-csharp-service:latest
+    container: glasswallsolutions/icap-cs-base:latest
     steps:
         - name: Checkout Project
           uses: actions/checkout@v1
