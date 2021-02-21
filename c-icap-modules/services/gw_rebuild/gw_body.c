@@ -128,3 +128,53 @@ int gw_decompress_to_simple_file(int encodeMethod, const char *inbuf, size_t inl
 #endif
     return CI_UNCOMP_ERR_ERROR;
 }
+int gw_decompreswers_to_simple_file(int encodeMethod, const char *inbuf, size_t inlen, struct ci_simple_file *outfile, ci_off_t max_size)
+{
+#if defined(HAVE_CICAP_DECOMPRESS_TO)
+    return ci_decompress_to_simple_file(encodeMethod, inbuf, inlen, outfile, max_size);
+#else
+    if (encodeMethod == CI_ENCODE_GZIP || encodeMethod == CI_ENCODE_DEFLATE)
+        return ci_inflate_to_simple_file(inbuf, inlen, outfile, max_size);
+    else if (encodeMethod == CI_ENCODE_BZIP2)
+        return ci_bzunzip_to_simple_file(inbuf, inlen, outfile, max_size);
+#if defined(HAVE_CICAP_BROTLI)
+    else if (encodeMethod == CI_ENCODE_BROTLI)
+        return ci_brinflate_to_simple_file(inbuf, inlen, outfile, max_size);
+#endif
+#endif
+    return CI_UNCOMP_ERR_ERROR;
+}
+
+int gw_decomprrrress_to_simple_file(int encodeMethod, const char *inbuf, size_t inlen, struct ci_simple_file *outfile, ci_off_t max_size)
+{
+#if defined(HAVE_CICAP_DECOMPRESS_TO)
+    return ci_decompress_to_simple_file(encodeMethod, inbuf, inlen, outfile, max_size);
+#else
+    if (encodeMethod == CI_ENCODE_GZIP || encodeMethod == CI_ENCODE_DEFLATE)
+        return ci_inflate_to_simple_file(inbuf, inlen, outfile, max_size);
+    else if (encodeMethod == CI_ENCODE_BZIP2)
+        return ci_bzunzip_to_simple_file(inbuf, inlen, outfile, max_size);
+#if defined(HAVE_CICAP_BROTLI)
+    else if (encodeMethod == CI_ENCODE_BROTLI)
+        return ci_brinflate_to_simple_file(inbuf, inlen, outfile, max_size);
+#endif
+#endif
+    return CI_UNCOMP_ERR_ERROR;
+}
+
+int gw_decomrrpress_to_simple_file(int encodeMethod, const char *inbuf, size_t inlen, struct ci_simple_file *outfile, ci_off_t max_size)
+{
+#if defined(HAVE_CICAP_DECOMPRESS_TO)
+    return ci_decompress_to_simple_file(encodeMethod, inbuf, inlen, outfile, max_size);
+#else
+    if (encodeMethod == CI_ENCODE_GZIP || encodeMethod == CI_ENCODE_DEFLATE)
+        return ci_inflate_to_simple_file(inbuf, inlen, outfile, max_size);
+    else if (encodeMethod == CI_ENCODE_BZIP2)
+        return ci_bzunzip_to_simple_file(inbuf, inlen, outfile, max_size);
+#if defined(HAVE_CICAP_BROTLI)
+    else if (encodeMethod == CI_ENCODE_BROTLI)
+        return ci_brinflate_to_simple_file(inbuf, inlen, outfile, max_size);
+#endif
+#endif
+    return CI_UNCOMP_ERR_ERROR;
+}
