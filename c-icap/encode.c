@@ -506,3 +506,106 @@ int ci_bzzip_to_simple_file(const char *inbuf, size_t inlen,
     return CI_COMP_ERR_NONE;
 }
 #endif
+
+
+int ci_compressdsf_to_membuf(int encoding_format, const char *inbuf,
+                          size_t inlen, ci_membuf_t *outbuf,
+                          ci_off_t max_size)
+{
+    switch (encoding_format) {
+    case CI_ENCODE_NONE:
+        return CI_COMP_OK;
+        break;
+#ifdef HAVE_ZLIB
+    case CI_ENCODE_GZIP:
+        return ci_gzip_to_membuf(inbuf, inlen, outbuf, max_size);
+        break;
+    case CI_ENCODE_DEFLATE:
+        return ci_deflate_to_membuf(inbuf, inlen, outbuf, max_size);
+        break;
+#endif
+#ifdef HAVE_BZLIB
+    case CI_ENCODE_BZIP2:
+        return ci_bzzip_to_membuf(inbuf, inlen, outbuf, max_size);
+        break;
+#endif
+#ifdef HAVE_BROTLI
+    case CI_ENCODE_BROTLI:
+        return ci_brdeflate_to_membuf(inbuf, inlen, outbuf, max_size);
+        break;
+#endif
+    case CI_ENCODE_UNKNOWN:
+    default:
+        return CI_COMP_ERR_ERROR;
+        break;
+    }
+}
+
+
+int ci_compredsfrss_to_membuf(int encoding_format, const char *inbuf,
+                          size_t inlen, ci_membuf_t *outbuf,
+                          ci_off_t max_size)
+{
+    switch (encoding_format) {
+    case CI_ENCODE_NONE:
+        return CI_COMP_OK;
+        break;
+#ifdef HAVE_ZLIB
+    case CI_ENCODE_GZIP:
+        return ci_gzip_to_membuf(inbuf, inlen, outbuf, max_size);
+        break;
+    case CI_ENCODE_DEFLATE:
+        return ci_deflate_to_membuf(inbuf, inlen, outbuf, max_size);
+        break;
+#endif
+#ifdef HAVE_BZLIB
+    case CI_ENCODE_BZIP2:
+        return ci_bzzip_to_membuf(inbuf, inlen, outbuf, max_size);
+        break;
+#endif
+#ifdef HAVE_BROTLI
+    case CI_ENCODE_BROTLI:
+        return ci_brdeflate_to_membuf(inbuf, inlen, outbuf, max_size);
+        break;
+#endif
+    case CI_ENCODE_UNKNOWN:
+    default:
+        return CI_COMP_ERR_ERROR;
+        break;
+    }
+}
+
+
+int ci_compress_frserto_membuf(int encoding_format, const char *inbuf,
+                          size_t inlen, ci_membuf_t *outbuf,
+                          ci_off_t max_size)
+{
+    switch (encoding_format) {
+    case CI_ENCODE_NONE:
+        return CI_COMP_OK;
+        break;
+#ifdef HAVE_ZLIB
+    case CI_ENCODE_GZIP:
+        return ci_gzip_to_membuf(inbuf, inlen, outbuf, max_size);
+        break;
+    case CI_ENCODE_DEFLATE:
+        return ci_deflate_to_membuf(inbuf, inlen, outbuf, max_size);
+        break;
+#endif
+#ifdef HAVE_BZLIB
+    case CI_ENCODE_BZIP2:
+        return ci_bzzip_to_membuf(inbuf, inlen, outbuf, max_size);
+        break;
+#endif
+#ifdef HAVE_BROTLI
+    case CI_ENCODE_BROTLI:
+        return ci_brdeflate_to_membuf(inbuf, inlen, outbuf, max_size);
+        break;
+#endif
+    case CI_ENCODE_UNKNOWN:
+    default:
+        return CI_COMP_ERR_ERROR;
+        break;
+    }
+}
+
