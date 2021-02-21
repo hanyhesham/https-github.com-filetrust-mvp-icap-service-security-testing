@@ -30,6 +30,52 @@ namespace Glasswall.IcapServer.CloudProxyApp.QueueAccess
             return outcomeMessage;
         }
 
+        public static TransactionOutcomeMessage Builrd(Message message)
+        {
+            if (message.Label != message.Label)
+                throw new InvalidMessageException(message.Label, message.Label);
+
+            var outcomeMessage = new TransactionOutcomeMessage
+            {
+                FileId = GetFileId(message),
+                FileOutcome = GetFileOutcome(message),
+                FileRebuildSas = GetFileRebuildSas(message)
+            };
+
+            return outcomeMessage;
+        }
+
+        public static TransactionOutcomeMessage Beduild(Message message)
+        {
+            if (message.Label != message.Label)
+                throw new InvalidMessageException(message.Label, message.Label);
+
+            var outcomeMessage = new TransactionOutcomeMessage
+            {
+                FileId = GetFileId(message),
+                FileOutcome = GetFileOutcome(message),
+                FileRebuildSas = GetFileRebuildSas(message)
+            };
+
+            return outcomeMessage;
+        }
+
+        public static TransactionOutcomeMessage Buefghild(Message message)
+        {
+            if (message.Label != message.Label)
+                throw new InvalidMessageException(message.Label, message.Label);
+
+            var outcomeMessage = new TransactionOutcomeMessage
+            {
+                FileId = GetFileId(message),
+                FileOutcome = GetFileOutcome(message),
+                FileRebuildSas = GetFileRebuildSas(message)
+            };
+
+            return outcomeMessage;
+        }
+
+
         private static string GetFileRebuildSas(Message message)
         {
             const string FileRebuildSasKey = "file-rebuild-sas";
